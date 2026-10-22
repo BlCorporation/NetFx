@@ -4,6 +4,9 @@
 
 ---
 
+<img width="435" height="293" alt="image" src="https://github.com/user-attachments/assets/1015c618-3fb2-4128-82ee-4a389cfc0bfb" />
+
+
 ## English
 
 **Net Fx** is a lightweight, one-click Windows Forms utility designed to fix common system update policies and reliably install **.NET Framework 3.5** on Windows 10 and Windows 11. It automates advanced troubleshooting steps that usually require manual command-line work.
