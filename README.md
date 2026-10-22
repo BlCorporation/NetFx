@@ -6,49 +6,48 @@
 
 <img width="435" height="293" alt="image" src="https://github.com/user-attachments/assets/1015c618-3fb2-4128-82ee-4a389cfc0bfb" />
 
-
 ## English
 
-**Net Fx** is a lightweight, one-click Windows Forms utility designed to fix common system update policies and reliably install **.NET Framework 3.5** on Windows 10 and Windows 11. It automates advanced troubleshooting steps that usually require manual command-line work.
+**Net Fx** is a simple WinForms tool to fix broken Windows Update policies and actually get **.NET Framework 3.5** installed on Windows 10 and 11. Instead of typing a bunch of DISM commands manually in `cmd`, this app automates the whole process.
 
-### Features
-* **Smart Detection:** Checks both Windows Registry and DISM features to verify if .NET 3.5 is already active.
-* **Policy Reset:** Temporarily bypasses misconfigured WSUS / Windows Update registry restrictions (`UseWUServer`, `RepairContentServerSource`) that frequently block feature installations.
-* **Component Cleanup:** Automatically stops/restarts update services and triggers DISM health restoration (`/RestoreHealth` and `/StartComponentCleanup`).
-* **Offline Fallback:** If the online method fails, the tool automatically scans all connected drives (USB, ISO, DVD) for a local `sources\sxs` directory and reinstalls from it.
-* **Fully Asynchronous:** Safe execution with real-time logging that won't freeze your UI.
+### What it does
+- **Checks status:** Scans registry and DISM to see if .NET 3.5 is already installed.
+- **Bypasses WSUS bugs:** Temporarily turns off annoying registry policies (`UseWUServer`, `RepairContentServerSource`) that constantly block .NET installation on managed PCs.
+- **Cleans up components:** Restarts update services and runs `DISM /RestoreHealth` + `/StartComponentCleanup` to fix corrupt system files.
+- **Offline search:** If internet installation fails, it searches all connected drives (USB flash drives, ISOs, DVDs) for a `sources\sxs` folder and installs directly from there.
+- **Async UI:** Runs everything in background threads so the window doesn't freeze during execution.
 
-### How to Use
-1. Download the latest compiled version from the Releases page.
-2. Run the application **as Administrator** (required to manage Windows features).
-3. Click **Install DotNet Fx** and wait for the process to finish.
-4. Restart your PC if recommended by the log.
+### Usage
+1. Grab the latest build from the [Releases](../../releases) page.
+2. Run it **as Administrator** (otherwise DISM won't work).
+3. Click **Install DotNet Fx** and let it do its thing.
+4. Reboot your PC if the log tells you to.
 
 ---
 
 ## Русский
 
-**Net Fx** — это легкая утилита на Windows Forms, которая позволяет «в один клик» исправить политики обновлений и надежно установить **.NET Framework 3.5** на Windows 10 и Windows 11. Она полностью автоматизирует сложные шаги исправления системы, которые обычно приходится делать вручную через командную строку.
+**Net Fx** — простая утилита на WinForms, которая помогает накатить **.NET Framework 3.5** на Windows 10 и 11, если он сбрасывается с ошибками. Вместо того чтобы вручную вбивать гору команд в консоль и править реестр, можно просто запустить эту штуку.
 
-### Возможности
-* **Умная проверка:** Проверяет как реестр Windows, так и состояние компонентов через DISM, чтобы узнать, не установлена ли уже версия 3.5.
-* **Сброс блокирующих политик:** Временно обходит ограничения реестра для WSUS и Центра обновлений (`UseWUServer`, `RepairContentServerSource`), которые чаще всего вызывают ошибки установки.
-* **Очистка компонентов:** Автоматически перезапускает службы обновлений и запускает восстановление хранилища компонентов DISM (`/RestoreHealth` и `/StartComponentCleanup`).
-* **Офлайн-режим (Резервный):** Если стандартный онлайн-метод не сработал, утилита сама сканирует все диски и флешки на наличие папки `sources\sxs` и ставит пакет локально.
-* **Полная асинхронность:** Безопасное выполнение системных команд с логом в реальном времени без зависания интерфейса.
+### Что умеет
+- **Проверяет статус:** Сверяет реестр и компоненты DISM, чтобы узнать, стоит ли уже .NET 3.5.
+- **Обходит косяки WSUS:** Временно сбрасывает параметры реестра (`UseWUServer`, `RepairContentServerSource`), из-за которых Центр обновлений часто наглухо блокирует установку.
+- **Чинит компоненты:** Перезапускает службы обновлений и прогоняет очистку/восстановление через DISM (`/RestoreHealth` и `/StartComponentCleanup`).
+- **Ищет офлайн-пакеты:** Если через инет поставить не удалось, софтина сама пробежится по всем дискам и флешкам в поиске папки `sources\sxs` и поставит .NET оттуда.
+- **Не виснет:** Все системные команды выполняются асинхронно, так что интерфейс не «умирает» во время работы.
 
-### Как использовать
-1. Скачайте готовую версию со страницы Releases
-2. Запустите программу **от имени Администратора** (это обязательно для управления компонентами Windows).
-3. Нажмите кнопку **Install DotNet Fx** и дождитесь окончания процесса.
-4. Перезагрузите ПК, если утилита порекомендует это в логе.
+### Как пользоваться
+1. Скачай собранный `.exe` из раздела [Releases](../../releases).
+2. Запусти **от имени Администратора** (без этого DISM и реестр просто не дадут прав).
+3. Нажми **Install DotNet Fx** и подожди завершения.
+4. Если в логе будет написано перегрузиться — перезагрузи ПК.
 
 ---
 
-### Antivirus Notice / Предупреждение об антивирусах
-* **EN:** Because this utility modifies system registry keys and stops Windows services, some strict corporate antiviruses or Windows Defender might show a false-positive warning. The project is **100% open-source**, meaning you can review every single line of code before building or running it.
-* **RU:** Так как утилита изменяет системные ключи реестра и управляет службами Windows, некоторые антивирусы или Windows Defender могут выдать ложное срабатывание. Проект имеет **полностью открытый исходный код**, вы можете лично проверить каждую строчку перед запуском.
+### Antivirus Notice / Про антивирусы
+- **EN:** The app edits registry keys and stops Windows services, so Windows Defender or strict antiviruses might flag it as a false positive. The code is **100% open-source** — feel free to check the source before running or compiling it yourself.
+- **RU:** Программа лазит в реестр и рестартит службы Windows, поэтому Defender или сторонние антивирусы могут ругаться (ложное срабатывание). Исходники **полностью открыты** — можете сами открыть проект и проверить каждую строчку перед сборкой.
 
 ### Developer / Разработчик
-* Developed by **EZ**
-* Telegram: [@eastkillaz](https://t.me/eastkillaz)
+- Dev: **EZ**
+- Telegram: [@eastkillaz](https://t.me/eastkillaz)
